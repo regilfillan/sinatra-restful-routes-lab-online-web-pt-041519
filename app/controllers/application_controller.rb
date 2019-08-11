@@ -1,4 +1,6 @@
 class ApplicationController < Sinatra::Base
+  
+  
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -13,8 +15,9 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
   
-  post '/recipes' do
-
+  get '/recipes/:id' do  #loads show page
+    @recipe = Recipe.find_by_id(params[:id])
+    erb :show
   end
 
 end
